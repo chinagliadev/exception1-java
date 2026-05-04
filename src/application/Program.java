@@ -37,24 +37,17 @@ public class Program {
 			System.out.println("Check Out date (dd/MM/yyyy): ");
 			checkOut = simpleDateFormat.parse(scanner.next());
 			
-			Date now = new Date();
-			if(checkIn.before(now) || checkOut.before(now)) 
+			String error = reservation.updateDates(checkIn, checkOut);
+			System.out.println(reservation);
+			
+			if(error != null) 
 			{
-				System.out.println("Error in Reservation: data invalid");
+				System.out.println("Error In Reservation: " + error);
 			}
 			else 
 			{
-				if(!checkOut.after(checkIn)) 
-				{
-					System.out.println("Error in reservation Date");
-				}
-				else 
-				{
-					reservation.updateDates(checkIn, checkOut);
-					System.out.println(reservation);
-				}
+				System.out.println("Reservation: " + reservation);
 			}
-			
 		}
 	}
 }
